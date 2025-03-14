@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { ILike, Repository } from 'typeorm';
+import { ILike, IsNull, Repository } from 'typeorm';
 
 @Injectable()
 export class TaskService {
@@ -13,7 +13,7 @@ export class TaskService {
     private taskRepository: Repository<TaskEntity>,
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-  ) {}
+  ) { }
 
   async createTask(userId: any, createTaskDto: CreateTaskDto) {
     let task = new TaskEntity();
@@ -105,19 +105,26 @@ export class TaskService {
     const tasks = await this.taskRepository.find({
       where: {
         user: userId,
-        title: ILike(`%${title}%`), // Usa a função ILike para busca case-insensitive e Like para case-sensitive
+        title: ILike(`%${title}%`), // ILike is case-insensitive
       },
     });
     return tasks;
   }
 
-  async findTasksByColor(userId: any, color: string) {
-    const tasks = await this.taskRepository.find({
-      where: {
-        user: userId,
-        color: ILike(`%${color}%`), // Usa a função ILike para busca case-insensitive e Like para case-sensitive
-      },
-    });
-    return tasks;
+  async findTasksByColor(userId: string | any, color: string | null) {
+    const formattedColor = color === "none" ? null : color;
+
+    const whereCondition = formattedColor === null
+      ? { user: userId, color: IsNull() }
+      : { user: userId, color: ILike(`%${formattedColor}%`) };
+
+    const tasks = await this.taskRepository.find({ where: whereCondition });
+
+    // Converte color === null para "none" antes de retornar para realizar buscas de notas sem cor definida
+    return tasks.map(task => ({
+      ...task,
+      color: task.color === null ? "none" : task.color
+    }));
   }
+
 }
