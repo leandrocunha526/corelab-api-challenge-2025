@@ -12,14 +12,14 @@ services:
 
     networks:
       - docker-nest-postgres
-    command: npm run start:dev
+    command: yarn run start:dev
     ports:
       - 3000:3000
     depends_on:
       - postgres
 
   postgres:
-    image: postgres:16-alpine
+    image: postgres:17-alpine
     restart: always
     environment:
       POSTGRES_HOST: ${DATABASE_HOST}
