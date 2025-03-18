@@ -24,7 +24,7 @@ services:
     environment:
       POSTGRES_HOST: ${DATABASE_HOST}
       POSTGRES_DB: ${DATABASE_NAME} # Not forget of create the database
-      POSTGRES_USER: ${DATBASE_USERNAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_HOST_AUTH_METHOD: 'trust' # Allow all connections without a password.
       # For change this:
