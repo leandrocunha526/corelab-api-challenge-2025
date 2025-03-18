@@ -91,7 +91,7 @@ $ docker-compose -f docker-compose.yml up -d
 
 To keep running without log.
 
-Images: Nodejs 20 (Alpine) and PostgreSQL 16.
+Images: Nodejs 22 (Alpine) and PostgreSQL 17.
 
 ## Support
 

@@ -103,7 +103,6 @@ SQL (Structured Query Language):
 
 - SQL é a linguagem usada para comunicar com bancos de dados relacionais. Permite executar consultas, inserir, atualizar e excluir dados.
 Exemplo: SELECT * FROM users WHERE id = 1;
-Schemas:
 
 - Schemas são formas de organizar tabelas e outros objetos dentro de um banco de dados. Eles ajudam a dividir dados em diferentes grupos.
 Exemplo: Um schema public que contém todas as tabelas padrão.
