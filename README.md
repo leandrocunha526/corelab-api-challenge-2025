@@ -1,8 +1,5 @@
 # Core Note API
 
-GitHub Action CI:  
-[![Node.js CI](https://github.com/leandrocunha526/corelab-api-challenge/actions/workflows/node.js.yml/badge.svg)](https://github.com/leandrocunha526/corelab-api-challenge/actions/workflows/node.js.yml)
-
 ## Project description
 
 Aplication to help manage tasks and reminders.
@@ -80,13 +77,13 @@ yarn run format
 ## Docker
 
 ```bash
-$ docker-compose -f docker-compose.yml up
+$ docker compose -f docker-compose.yml up
 ```
 
 Or
 
 ```bash
-$ docker-compose -f docker-compose.yml up -d
+$ docker compose -f docker-compose.yml up -d
 ```
 
 To keep running without log.
